@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tier List Maker</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="dragula.min.css">
+	<meta charset="UTF-8">
+</head>
+<body>
+<main>
+<header>
+	<input type="text" class="textInput" id="listTitle" placeholder="Tier List Title">
+</header>
+<div class="tierlist">
+	<div class="row" id="row1">
+		<div class="letter" id="letterS">
+		<p>S</p>
+		</div>
+		<div class="items" >
+			<ul class="list" id="slist">
+				<li class="item disappear" id="disappear5" data-html2canvas-ignore>
+					<input type="text" class="textInput" id="slistItem" placeholder="Text or Image">
+					<input type="button" class="buttonInput" id="addButtonS" value="+">
+				</li>
+				<!--<li class="item"><p>Banana Brain</p>
+<div data-video="fgnUfdYCugU" data-autoplay="0" data-loop="1" id="youtube-audio">
+ </div></li>-->
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="letter" id="letterA">
+		<p>A</p>
+		</div>
+		<div class="items">
+			<ul class="list" id="alist">
+				<li class="item disappear" id="disappear4" data-html2canvas-ignore>
+					<input type="text" class="textInput" id="alistItem">
+					<input type="button" class="buttonInput" id="addButtonA" value="+">
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="letter" id="letterB">
+		<p>B</p>
+		</div>
+		<div class="items">
+			<ul class="list" id="blist">
+				<li class="item disappear" id="disappear3" data-html2canvas-ignore>
+					<input type="text" class="textInput" id="blistItem">
+					<input type="button" class="buttonInput" id="addButtonB" value="+">
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="letter" id="letterC">
+		<p>C</p>
+		</div>
+		<div class="items">
+			<ul class="list" id="clist">
+				<li class="item disappear" id="disappear2" data-html2canvas-ignore>
+					<input type="text" class="textInput" id="clistItem">
+					<input type="button" class="buttonInput" id="addButtonC" value="+">
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="letter" id="letterD">
+		<p>D</p>
+		</div>
+		<div class="items">
+			<ul class="list" id="dlist">
+				<li class="item disappear" id="disappear1" data-html2canvas-ignore>
+					<input type="text" class="textInput" id="dlistItem">
+					<input type="button" class="buttonInput" id="addButtonD" value="+">
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row" data-html2canvas-ignore>
+		<div class="letter" id="trackletter">
+		<p>Tracks</p>
+		</div>
+		<div class="items">
+			<ul class="list" id="trackList">
+				<li class="item disappear" id="disappear" data-html2canvas-ignore>
+					<input type="text" class="textInput" id="artist" placeholder="Artist">
+					<input type="text" class="textInput" id="album" placeholder="Album">
+					<input type="button" class="buttonInput" id="addButtonT" value="Get Tracks">
+				</li>
+				<li id="youtube-audio" class="item" data-autoplay="0" data-loop="1" data-video="">
+					<p>Player</p><img src="quyUPXN.png" class="ytImage" id="youtube-icon">
+					<div id="youtube-player"></div>
+					
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</main>
+
+<div id="screenButtonDiv">
+	<input type="button" class="buttonInput" id="screenButton" value="Download Screenshot">
+</div>
+<script src="https://www.youtube.com/iframe_api"></script>
+<!--<script src="https://cdn.rawgit.com/labnol/files/master/yt.js"></script>-->
+<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="ygrab.js"></script>
+<script type="text/javascript" src="dragula.min.js"></script>
+<script type="text/javascript" src="html2canvas.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>

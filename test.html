@@ -1,0 +1,44 @@
+<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="ygrab.js"></script>
+<script>        
+
+
+var data = [
+    {
+        url: 'https://www.last.fm/music/Cher/Believe', // url string rquired
+        selector: '.chartlist-play', // selector string rquired
+        loop: true, // each boolean rquired
+        result: [
+            {
+                name: 'id', // key string rquired
+                find: 'a', // selector child string rquired
+                grab: {
+                    by: 'attr', // attribut string rquired
+                    value: 'data-youtube-id' // attribut value string optional
+                }
+            },
+            {
+                name: 'title',
+                find: 'a',
+                grab: {
+                    by: 'attr',
+                    value: 'data-track-name'
+                }
+            },
+            // ---- new selector ---- //
+        ]
+    },
+    // ---- new website url ---- //
+];
+
+
+ygrab(data, function(result) {
+    let albumIds = result;
+    return albumIds
+});
+
+
+console.log(albumIds)
+
+
+</script>

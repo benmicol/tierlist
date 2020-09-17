@@ -1,0 +1,202 @@
+html, body {
+	padding:0;
+	margin:0;
+	/*
+	height: 100%;
+	width: 100%;*/
+	background-color: black;
+	font-family: arial;
+}
+main {
+	/*height: 95%;
+	width: 100%;*/
+	background-color: black;
+	display: flex;
+	flex-flow: column;
+	color: white;
+	font-size: calc(1rem + .2vw)
+}
+header {
+	margin: auto;
+}
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.disappear {
+	display: flex;
+}
+.tierlist {
+	width:90vw;
+	background-color: rgb(40,40,40);
+	margin: auto;
+	display: flex;
+	flex-flow: column;
+}
+.row {
+	min-height: 10vh;
+	width: 100%;
+	border: 2px solid black;
+	display: flex;
+	flex-flow: row;
+}
+.letter{
+	
+	/*height: 100%;*/
+	width: 10vmax;
+	text-align: center;
+	display: flex;
+	color: black;
+	border-right: 4px solid black;
+}
+.letter p {
+	margin: auto;
+	font-size: calc(2vw + 2vh);
+}
+#letterS {
+	background-color: rgb(255, 118, 118);
+}
+#letterA {
+	background-color: rgb(255, 196, 138);
+}
+#letterB {
+	background-color: rgb(255, 227, 141);
+}
+#letterC {
+	background-color: rgb(157, 248, 157);
+}
+#letterD {
+	background-color: rgb(118, 248, 248);
+}
+.items {
+	width: 80vmax;
+	margin: auto;
+}
+.list {
+	display: flex;
+	flex-flow: row wrap;
+	min-height: 10vh;
+}
+.list li {
+	display: flex;
+	cursor: pointer;
+
+}
+.item{
+	/*background-color: purple;*/
+	border-radius: 0.5rem;
+	align-self: center;
+	padding: 2vmin;
+}
+.item p {
+	font-size: calc(2vw + 1vh);
+	/*max-width: 20vw;*/
+	text-align: center;
+	margin: auto;
+}
+.add {
+
+}
+.textInput {
+	background-color: lightgray;
+	border: none;
+	border-radius: 0.2rem;
+	margin: auto;
+	font-size: calc(2vw + 1vh);
+	max-width: 20vw;
+}
+#listTitle {
+	background: none;
+	color: white;
+	font-size: calc(3vw + 3vh);
+	text-align: center;
+	min-width: 90vw;
+	margin: 1vmin;
+}
+::placeholder {
+	color: gray;
+	opacity: 1;
+	}
+.buttonInput {
+	border-radius: 0.2rem;
+	border: 2px solid lightgray;
+	background: none;
+	color: white;
+	cursor: pointer;
+	min-height: 4vmin;
+	min-width: 4vmin;
+	margin: auto 0 auto 10px;
+	font-size: calc(2vw + 1vh);
+}
+#addButtonT {
+	width: 14vw;
+}
+/*.screenshot {
+	display: flex;
+	width: 20%;
+	height: 20%;
+	overflow: hidden;
+	margin: auto;
+}*/
+.screenshot {
+	position: fixed; /* Sit on top of the page content */
+  display: none;/* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.9); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  flex-flow: column;
+}
+.canvas {
+	width: 80%;
+	height: 80%;
+	overflow: scroll;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+}
+#screenButtonDiv {
+	display: flex;
+	justify-content: center;
+	padding: 2vmin 0;
+}
+.screenInstruct {
+	color: white;
+	margin: auto;
+	font-size: calc(2vw + 2vh);
+	text-align: center;
+
+}
+.userImage {
+	/*height: 100%;
+  position:relative;
+  background-size: cover;
+  background-position: center;
+  min-width: 100px;
+  min-height: 100px;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;*/
+  max-height: 20vh;
+  max-width: 20vw;
+}
+#album {
+	margin-left: 1%;
+}
+#trackletter {
+	color: white;
+}
+.ytImage {
+	max-width: 4vw;
+	margin-left: 10%;
+}
+#poster {
+	object-fit: contain;
+	max-width: 10vw;
+}
