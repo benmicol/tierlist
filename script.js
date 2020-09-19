@@ -150,8 +150,9 @@ function addTracks() {
 			poster.id = 'poster';
 			poster.src = postersrc;
 			let trackLetter = document.querySelector('#trackletter');
-			trackletter.innerHTML = "";
+
 			trackLetter.appendChild(poster)
+			document.querySelector('#nowPlaying').innerHTML = lastFM.album.tracks.track[0].name;
 
 
 				var data = [
@@ -193,7 +194,7 @@ function addTracks() {
 		  	track.appendChild(imgdiv);
 		  	let player = document.querySelector('#youtube-audio');
 		  	let playBtn = document.createElement('img');
-		  	playBtn.src = "loading.png";
+		  	playBtn.src = "quyUPXN.png";
 		  	playBtn.className = "ytImage";
 		  	playBtn.setAttribute("id", "youtube-icon"+i);
 		  	playBtn.addEventListener('click', setVideo);
@@ -216,7 +217,7 @@ function addTracks() {
   			player.appendChild(a);*/
 		  	}
 
-			ygrab(data, function(result) {
+			ygrab(data, async function(result) {
 				let albumIds = result;
 				document.querySelector('#youtube-audio').setAttribute('data-video', albumIds[0].id);
 			
@@ -239,7 +240,7 @@ function addTracks() {
 		  	trackList.appendChild(track);*/
 
   			/*let player = document.createElement('div');*/
-  			/*fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q='+trackName+'&key=AIzaSyA8JT_T-wr-xSgB_8uheNgoaFSfQlM0cMw', {mode: 'cors'})*/
+  			/*fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q='+trackName+'&key=', {mode: 'cors'})*/
   			/*fetch('https://youtube-scrape.herokuapp.com/api/search?q=banana&page=1')
 				.then(function(response) {
 					return response.json();
@@ -313,8 +314,10 @@ function addTracks() {
 					  }*/
 					
 					/*});*/
-}});
-			createPlayer();
+}
+await createPlayer();
+});
+			
   			document.querySelector('#disappear').style.display ="none";
   			document.querySelector('#disappear1').style.display ="none";
   			document.querySelector('#disappear2').style.display ="none";
@@ -327,7 +330,9 @@ function addTracks() {
 function setVideo(){
 	let player = document.querySelector('#youtube-audio');
 	let iframe = document.querySelector('#youtube-player');
-	iframe.setAttribute('src', 'https://www.youtube.com/embed/'+this.parentNode.getAttribute('data-video')+'?autoplay=0&loop=1&enablejsapi=1&origin=http%3A%2F%2Fbenmicol.com&widgetid=1');
+	iframe.setAttribute('src', 'https://www.youtube.com/embed/'+this.parentNode.parentNode.getAttribute('data-video')+'?autoplay=1&loop=1&enablejsapi=1&origin=http%3A%2F%2Fbenmicol.com&widgetid=1');
+	document.querySelector('#nowPlaying').innerHTML = this.parentNode.parentNode.firstChild.innerHTML;
+
 	/*let song = this.parentNode.getAttribute('data-video')
 	createPlayer();*/
 		  	}

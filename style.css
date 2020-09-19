@@ -191,6 +191,8 @@ ul {
 }
 #trackletter {
 	color: white;
+	display: flex;
+	flex-flow: column;
 }
 .ytImage {
 	max-width: 4vw;
