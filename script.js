@@ -1,15 +1,16 @@
 const listArr = ['s','a','b','c','d'];
+let counter = 0;
 /*const slist = document.querySelector('#slist');
 const alist = document.querySelector('#alist');
 const blist = document.querySelector('#blist');
 const clist = document.querySelector('#clist');
 const dlist = document.querySelector('#dlist');*/
 const trackList = document.querySelector('#trackList');
-const buttonS = document.querySelector('#addButtonS');
+/*const buttonS = document.querySelector('#addButtonS');
 const buttonA = document.querySelector('#addButtonA');
 const buttonB = document.querySelector('#addButtonB');
 const buttonC = document.querySelector('#addButtonC');
-const buttonD = document.querySelector('#addButtonD');
+const buttonD = document.querySelector('#addButtonD');*/
 const buttonT = document.querySelector('#addButtonT');
 const buttonScreen = document.querySelector('#screenButton');
 const main = document.querySelector('main');
@@ -23,14 +24,20 @@ screenshotContainer.appendChild(screenInstruct)
 screenInstruct.textContent = "Right Click and Select Save Image to Download";
 screenInstruct.className = "screenInstruct";
 screenshotContainer.appendChild(canvasContainer);
-buttonS.addEventListener('click', addItemS);
+/*buttonS.addEventListener('click', addItemS);
 buttonA.addEventListener('click', addItemA);
 buttonB.addEventListener('click', addItemB);
 buttonC.addEventListener('click', addItemC);
-buttonD.addEventListener('click', addItemD);
+buttonD.addEventListener('click', addItemD);*/
 buttonT.addEventListener('click', addTracks);
 buttonScreen.addEventListener('click', screenshot);
 screenshotContainer.addEventListener('click',off);
+
+for (var i = listArr.length - 1; i >= 0; i--) {
+	document.querySelector('#addButton'+listArr[i].toUpperCase()).addEventListener('click', event => {
+		addItem(listArr[i]);
+});
+}
 /*document.getElementById('slistItem').addEventListener('keydown', event => {
   if (event.isComposing || event.keyCode === 229) {
     return;
@@ -139,7 +146,7 @@ let bcounter = 0;
 let ccounter = 0;
 let dcounter = 0;
 let tcounter = 0;*/
-let counter = 0;
+
 
 function addTracks() {
 	let artist = document.getElementById('artist').value;
@@ -335,13 +342,16 @@ function addTracks() {
 }
 await createPlayer();
 });
-			
-  			document.querySelector('#disappear').style.display ="none";
+			let disArray = ['S','A','B','C','D','T'];
+			for (let i = disArray.length - 1; i >= 0; i--) {
+				document.querySelector('#disappear'+disArray[i]).style.display = "none";
+			}
+  			/*document.querySelector('#disappear').style.display ="none";
   			document.querySelector('#disappear1').style.display ="none";
   			document.querySelector('#disappear2').style.display ="none";
   			document.querySelector('#disappear3').style.display ="none";
   			document.querySelector('#disappear4').style.display ="none";
-  			document.querySelector('#disappear5').style.display ="none";
+  			document.querySelector('#disappear5').style.display ="none";*/
   			document.querySelector('#listTitle').value = titleCase(album);
 			}
 )};
@@ -350,10 +360,7 @@ function setVideo(){
 	let iframe = document.querySelector('#youtube-player');
 	iframe.setAttribute('src', 'https://www.youtube.com/embed/'+this.parentNode.parentNode.getAttribute('data-video')+'?autoplay=1&loop=1&enablejsapi=1&origin=http%3A%2F%2Fbenmicol.com&widgetid=1');
 	document.querySelector('#nowPlaying').innerHTML = this.parentNode.parentNode.firstChild.innerHTML;
-
-	/*let song = this.parentNode.getAttribute('data-video')
-	createPlayer();*/
-		  	}
+	}
 function createPlayer() {
 	let player = document.querySelector('#youtube-audio');
 	player.onclick = toggleAudio;
@@ -370,104 +377,28 @@ function createPlayer() {
 		      				'onStateChange': onPlayerStateChange
 		      				}
 		 			 });
-		  	
-
-		  			function togglePlayButton(play) {    
-		    			document.getElementById("youtube-icon").src = play ? "IDzX9gL.png" : "quyUPXN.png";
-		  			}
-
-					  function toggleAudio() {
-					    if ( r.getPlayerState() == 1 || r.getPlayerState() == 3 ) {
-					      r.pauseVideo(); 
-					      togglePlayButton(false);
-					    } else {
-					      r.playVideo(); 
-					      togglePlayButton(true);
-					    } 
-					  } 
-
-					  function onPlayerReady(event) {
-					    togglePlayButton(r.getPlayerState() !== 5);
-					  }
-
-					  function onPlayerStateChange(event) {
-					    if (event.data === 0) {
-					      togglePlayButton(false); 
-					    }
-					  }
-	/*e.onclick = toggleAudio;
-	var r = new YT.Player("youtube-player"+i, {
-		    			height: "0",
-		    			width: "0",
-		    			videoId: e.dataset.video,
-		    			playerVars: {
-		      				autoplay: e.dataset.autoplay,
-		      				loop: e.dataset.loop
-		    			},
-		    			events: {
-		      				'onReady': onPlayerReady,
-		      				'onStateChange': onPlayerStateChange
-		      				}
-		 			 });
-		  	
-
-		  			function togglePlayButton(play) {    
-		    			document.getElementById("youtube-icon"+i).src = play ? "IDzX9gL.png" : "quyUPXN.png";
-		  			}
-
-					  function toggleAudio() {
-					    if ( r.getPlayerState() == 1 || r.getPlayerState() == 3 ) {
-					      r.pauseVideo(); 
-					      togglePlayButton(false);
-					    } else {
-					      r.playVideo(); 
-					      togglePlayButton(true);
-					    } 
-					  } 
-
-					  function onPlayerReady(event) {
-					    togglePlayButton(r.getPlayerState() !== 5);
-					  }
-
-					  function onPlayerStateChange(event) {
-					    if (event.data === 0) {
-					      togglePlayButton(false); 
-					    }
-					  }*/
+	function togglePlayButton(play) {    
+		document.getElementById("youtube-icon").src = play ? "IDzX9gL.png" : "quyUPXN.png";
+		}
+	function toggleAudio() {
+	    if ( r.getPlayerState() == 1 || r.getPlayerState() == 3 ) {
+	      r.pauseVideo(); 
+	      togglePlayButton(false);
+	    } else {
+	      r.playVideo(); 
+	      togglePlayButton(true);
+	    } 
+	  } 
+	function onPlayerReady(event) {
+	    togglePlayButton(r.getPlayerState() !== 5);
+	  }
+	function onPlayerStateChange(event) {
+	    if (event.data === 0) {
+	      togglePlayButton(false); 
+	    }
+	  }
 }
 
-/*function onYouTubeIframeAPIReady() {
-	var e = document.getElementById("youtube-audio"+i),
-    			t = document.createElement("img");
-    		t.src = "https://i.imgur.com/quyUPXN.png";
-  			t.setAttribute("id", "youtube-icon"+i), e.appendChild(t);
-  			var a = document.createElement("div");
-  			a.setAttribute("id", "youtube-player"+i), e.appendChild(a);
-  			var o = function(e) {
-    			var a = e ? "IDzX9gL.png" : "quyUPXN.png";
-    			t.setAttribute("src", "https://i.imgur.com/" + a)
-  			};
-  			e.onclick = function() {
-    			r.getPlayerState() === YT.PlayerState.PLAYING || r.getPlayerState() === YT.PlayerState.BUFFERING ? (r.pauseVideo(), o(!1)) : (r.playVideo(), o(!0))
-  			};
-  			var r = new YT.Player("youtube-player"+i, {
-    			height: "0",
-    			width: "0",
-    			videoId: e.dataset.video,
-    			playerVars: {
-      				autoplay: e.dataset.autoplay,
-      				loop: e.dataset.loop
-    			},
-    			events: {
-      				onReady: function(e) {
-        				o(r.getPlayerState() !== YT.PlayerState.CUED)
-      				},
-      				onStateChange: function(e) {
-        				e.data === YT.PlayerState.ENDED && o(!1)
-      				}
-    			}
- 			 })
-}*/
 dragula([document.querySelector('#trackList'), document.querySelector('#slist'), document.querySelector('#alist'), document.querySelector('#blist'), document.querySelector('#clist'), document.querySelector('#dlist')]);
 
 function addItem(item) {
@@ -495,158 +426,4 @@ function addItem(item) {
 	rembut.addEventListener('click', function(){this.closest('.item').remove()});
 	counter += 1;
 	clearText()
-}
-
-
-function addItemS() {
-	let newItem = document.getElementById('slistItem').value;
-	let entry = document.createElement('li');
-	let rembut = document.createElement('input');
-
-	rembut.type = "button"
-	rembut.className = "buttonInput"
-	rembut.value = "-"
-	rembut.id = "remButtonS"+scounter
-	rembut.setAttribute("data-html2canvas-ignore","")
-	if (isValidUrl(newItem)) {
-		let image = document.createElement('img');
-		image.src = newItem;
-		image.className = "userImage";
-		entry.appendChild(image);
-		entry.className="item";
-		/*let image = document.createElement('div');
-		image.className = "userImage";
-		entry.appendChild(image)
-		image.style.background = "url("+newItem+")no-repeat";*/
-
-	} else {
-	entry.innerHTML = "<p>"+titleCase(newItem)+"</p>";
-	entry.className="item";
-	}
-	/*slist.appendChild(entry);*/
-	entry.appendChild(rembut)
-	slist.insertBefore(entry, slist.firstChild);
-	document.querySelector('#remButtonS'+scounter).addEventListener('click', function(){this.closest('.item').remove()});
-	scounter += 1;
-	clearText()
-}
-function addItemA() {
-	let newItem = document.getElementById('alistItem').value;
-	let entry = document.createElement('li');
-	let rembut = document.createElement('input');
-	rembut.type = "button"
-	rembut.className = "buttonInput"
-	rembut.value = "-"
-	rembut.id = "remButtonA"+acounter
-	rembut.setAttribute("data-html2canvas-ignore","")
-	if (isValidUrl(newItem)) {
-		let image = document.createElement('img');
-		image.src = newItem;
-		image.className = "userImage";
-		entry.appendChild(image);
-		entry.className="item";
-		/*let image = document.createElement('div');
-		image.className = "userImage";
-		entry.appendChild(image)
-		image.style.background = "url("+newItem+")no-repeat";*/
-
-	} else {
-	entry.innerHTML = "<p>"+titleCase(newItem)+"</p>";
-	entry.className="item";
-	}
-	alist.insertBefore(entry, alist.firstChild);
-	entry.appendChild(rembut)
-	document.querySelector('#remButtonA'+acounter).addEventListener('click', function(){this.closest('.item').remove()});
-	acounter += 1;
-	clearText()
-}
-function addItemB() {
-	let newItem = document.getElementById('blistItem').value;
-	let entry = document.createElement('li');
-	let rembut = document.createElement('input');
-	rembut.type = "button"
-	rembut.className = "buttonInput"
-	rembut.value = "-"
-	rembut.id = "remButtonB"+bcounter
-	rembut.setAttribute("data-html2canvas-ignore","")
-	if (isValidUrl(newItem)) {
-		let image = document.createElement('img');
-		image.src = newItem;
-		image.className = "userImage";
-		entry.appendChild(image);
-		entry.className="item";
-		/*let image = document.createElement('div');
-		image.className = "userImage";
-		entry.appendChild(image)
-		image.style.background = "url("+newItem+")no-repeat";*/
-
-	} else {
-	entry.innerHTML = "<p>"+titleCase(newItem)+"</p>";
-	entry.className="item";
-	}
-	blist.insertBefore(entry, blist.firstChild);
-	entry.appendChild(rembut)
-	document.querySelector('#remButtonB'+bcounter).addEventListener('click', function(){this.closest('.item').remove()});
-	bcounter += 1;
-	clearText()
-}
-function addItemC() {
-	let newItem = document.getElementById('clistItem').value;
-	let entry = document.createElement('li');
-	let rembut = document.createElement('input');
-	rembut.type = "button"
-	rembut.className = "buttonInput"
-	rembut.value = "-"
-	rembut.id = "remButtonC"+ccounter
-	rembut.setAttribute("data-html2canvas-ignore","")
-	if (isValidUrl(newItem)) {
-		let image = document.createElement('img');
-		image.src = newItem;
-		image.className = "userImage";
-		entry.appendChild(image);
-		entry.className="item";
-		/*let image = document.createElement('div');
-		image.className = "userImage";
-		entry.appendChild(image)
-		image.style.background = "url("+newItem+")no-repeat";*/
-
-	} else {
-	entry.innerHTML = "<p>"+titleCase(newItem)+"</p>";
-	entry.className="item";
-	}
-	clist.insertBefore(entry, clist.firstChild);
-	entry.appendChild(rembut)
-	document.querySelector('#remButtonC'+ccounter).addEventListener('click', function(){this.closest('.item').remove()});
-	ccounter += 1;
-	clearText()
-}
-function addItemD() {
-	let newItem = document.getElementById('dlistItem').value;
-	let entry = document.createElement('li');
-	let rembut = document.createElement('input');
-	rembut.type = "button"
-	rembut.className = "buttonInput"
-	rembut.value = "-"
-	rembut.id = "remButtonD"+dcounter
-	rembut.setAttribute("data-html2canvas-ignore","")
-	if (isValidUrl(newItem)) {
-		let image = document.createElement('img');
-		image.src = newItem;
-		image.className = "userImage";
-		entry.appendChild(image);
-		entry.className="item";
-		/*let image = document.createElement('div');
-		image.className = "userImage";
-		entry.appendChild(image)
-		image.style.background = "url("+newItem+")no-repeat";*/
-
-	} else {
-	entry.innerHTML = "<p>"+titleCase(newItem)+"</p>";
-	entry.className="item";
-	}
-	dlist.insertBefore(entry, dlist.firstChild);
-	entry.appendChild(rembut)
-	document.querySelector('#remButtonD'+dcounter).addEventListener('click', function(){this.closest('.item').remove()});
-	dcounter += 1;
-	clearText()
-}
+};
