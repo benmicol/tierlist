@@ -90,7 +90,7 @@ ul {
 	padding: 2vmin;
 }
 .item p {
-	font-size: calc(2vw + 1vh);
+	font-size: calc(1vw + 1vh);
 	/*max-width: 20vw;*/
 	text-align: center;
 	margin: auto;
@@ -195,7 +195,7 @@ ul {
 	flex-flow: column;
 }
 .ytImage {
-	max-width: 4vw;
+	max-width: 2vw;
 	margin-left: 10%;
 }
 #poster {
