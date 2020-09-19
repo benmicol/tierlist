@@ -197,6 +197,7 @@ ul {
 .ytImage {
 	max-width: 2vw;
 	margin-left: 10%;
+	margin-right: 10%;
 }
 #poster {
 	object-fit: contain;

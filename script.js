@@ -136,6 +136,16 @@ let tcounter = 0;
 function addTracks() {
 	let artist = document.getElementById('artist').value;
 	let album = document.getElementById('album').value;
+	let playerBtn = document.createElement('img');
+	let youtubeAudio = document.querySelector('#youtube-audio');
+  	playerBtn.src = "quyUPXN.png";
+  	playerBtn.className = "ytImage";
+  	playerBtn.setAttribute("id", "youtube-icon");
+  	youtubeAudio.appendChild(playerBtn);
+  	let nowPlaying = document.createElement('div');
+  	nowPlaying.id = 'nowPlaying';
+  	youtubeAudio.appendChild(nowPlaying);
+
 
 	fetch('http://ws.audioscrobbler.com/2.0/?method=album.getInfo&artist='+artist+'&album=' + album + '&api_key=cb44e36a7f8b0c6427b01d4de757a2ad&format=json', {mode: 'cors'})
     	.then(function(response) {
@@ -324,7 +334,7 @@ await createPlayer();
   			document.querySelector('#disappear3').style.display ="none";
   			document.querySelector('#disappear4').style.display ="none";
   			document.querySelector('#disappear5').style.display ="none";
-  			document.querySelector('#listTitle').value = album;
+  			document.querySelector('#listTitle').value = titleCase(album);
 			}
 )};
 function setVideo(){
