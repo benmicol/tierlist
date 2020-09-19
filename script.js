@@ -1,8 +1,9 @@
-const slist = document.querySelector('#slist');
+const listArr = ['s','a','b','c','d'];
+/*const slist = document.querySelector('#slist');
 const alist = document.querySelector('#alist');
 const blist = document.querySelector('#blist');
 const clist = document.querySelector('#clist');
-const dlist = document.querySelector('#dlist');
+const dlist = document.querySelector('#dlist');*/
 const trackList = document.querySelector('#trackList');
 const buttonS = document.querySelector('#addButtonS');
 const buttonA = document.querySelector('#addButtonA');
@@ -30,7 +31,7 @@ buttonD.addEventListener('click', addItemD);
 buttonT.addEventListener('click', addTracks);
 buttonScreen.addEventListener('click', screenshot);
 screenshotContainer.addEventListener('click',off);
-document.getElementById('slistItem').addEventListener('keydown', event => {
+/*document.getElementById('slistItem').addEventListener('keydown', event => {
   if (event.isComposing || event.keyCode === 229) {
     return;
   } else if (event.keyCode === 13) {
@@ -59,7 +60,16 @@ document.getElementById('dlistItem').addEventListener('keydown', event => {
     return;
   } else if (event.keyCode === 13) {
   	addItemD();
-  }});
+  }});*/
+
+for (let i = listArr.length - 1; i >= 0; i--) {
+	document.getElementById(listArr[i]+'listItem').addEventListener('keydown', event => {
+  		if (event.isComposing || event.keyCode === 229) {
+    		return;
+  		} else if (event.keyCode === 13) {
+  			addItem(listArr[i]);
+  		}});
+}
 
 document.getElementById('listTitle').value = "";
 clearText()
@@ -90,9 +100,6 @@ function saveAs(uri, filename) {
 	  window.open(uri);
 	}
 	}
-
-
-
 function screenshot(){
 	canvasContainer.innerHTML = "";
 
@@ -126,12 +133,13 @@ function clearText() {
 	document.getElementById('album').value = "";
 }
 
-let scounter = 0;
+/*let scounter = 0;
 let acounter = 0;
 let bcounter = 0;
 let ccounter = 0;
 let dcounter = 0;
-let tcounter = 0;
+let tcounter = 0;*/
+let counter = 0;
 
 function addTracks() {
 	let artist = document.getElementById('artist').value;
@@ -461,6 +469,34 @@ function createPlayer() {
  			 })
 }*/
 dragula([document.querySelector('#trackList'), document.querySelector('#slist'), document.querySelector('#alist'), document.querySelector('#blist'), document.querySelector('#clist'), document.querySelector('#dlist')]);
+
+function addItem(item) {
+	let newItem = document.getElementById(item+'listItem').value;
+	let entry = document.createElement('li');
+	let rembut = document.createElement('input');
+	let list = document.querySelector('#'+item+'list');
+	rembut.type = "button"
+	rembut.className = "buttonInput"
+	rembut.value = "-"
+	rembut.id = "remButton"+item.toUpperCase()+counter;
+	rembut.setAttribute("data-html2canvas-ignore","");
+	if (isValidUrl(newItem)) {
+		let image = document.createElement('img');
+		image.src = newItem;
+		image.className = "userImage";
+		entry.appendChild(image);
+		entry.className="item";
+	} else {
+	entry.innerHTML = "<p>"+titleCase(newItem)+"</p>";
+	entry.className="item";
+	}
+	entry.appendChild(rembut)
+	list.insertBefore(entry, list.firstChild);
+	rembut.addEventListener('click', function(){this.closest('.item').remove()});
+	counter += 1;
+	clearText()
+}
+
 
 function addItemS() {
 	let newItem = document.getElementById('slistItem').value;
