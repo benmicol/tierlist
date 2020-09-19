@@ -1,16 +1,8 @@
 const listArr = ['s','a','b','c','d'];
 let counter = 0;
-/*const slist = document.querySelector('#slist');
-const alist = document.querySelector('#alist');
-const blist = document.querySelector('#blist');
-const clist = document.querySelector('#clist');
-const dlist = document.querySelector('#dlist');*/
+dragula([document.querySelector('#trackList'), document.querySelector('#slist'), document.querySelector('#alist'), document.querySelector('#blist'), document.querySelector('#clist'), document.querySelector('#dlist')]);
 const trackList = document.querySelector('#trackList');
-/*const buttonS = document.querySelector('#addButtonS');
-const buttonA = document.querySelector('#addButtonA');
-const buttonB = document.querySelector('#addButtonB');
-const buttonC = document.querySelector('#addButtonC');
-const buttonD = document.querySelector('#addButtonD');*/
+
 const buttonT = document.querySelector('#addButtonT');
 const buttonScreen = document.querySelector('#screenButton');
 const main = document.querySelector('main');
@@ -24,11 +16,7 @@ screenshotContainer.appendChild(screenInstruct)
 screenInstruct.textContent = "Right Click and Select Save Image to Download";
 screenInstruct.className = "screenInstruct";
 screenshotContainer.appendChild(canvasContainer);
-/*buttonS.addEventListener('click', addItemS);
-buttonA.addEventListener('click', addItemA);
-buttonB.addEventListener('click', addItemB);
-buttonC.addEventListener('click', addItemC);
-buttonD.addEventListener('click', addItemD);*/
+
 buttonT.addEventListener('click', addTracks);
 buttonScreen.addEventListener('click', screenshot);
 screenshotContainer.addEventListener('click',off);
@@ -38,36 +26,6 @@ for (var i = listArr.length - 1; i >= 0; i--) {
 		addItem(listArr[i]);
 });
 }
-/*document.getElementById('slistItem').addEventListener('keydown', event => {
-  if (event.isComposing || event.keyCode === 229) {
-    return;
-  } else if (event.keyCode === 13) {
-  	addItemS();
-  }});
-document.getElementById('alistItem').addEventListener('keydown', event => {
-  if (event.isComposing || event.keyCode === 229) {
-    return;
-  } else if (event.keyCode === 13) {
-  	addItemA();
-  }});
-document.getElementById('blistItem').addEventListener('keydown', event => {
-  if (event.isComposing || event.keyCode === 229) {
-    return;
-  } else if (event.keyCode === 13) {
-  	addItemB();
-  }});
-document.getElementById('clistItem').addEventListener('keydown', event => {
-  if (event.isComposing || event.keyCode === 229) {
-    return;
-  } else if (event.keyCode === 13) {
-  	addItemC();
-  }});
-document.getElementById('dlistItem').addEventListener('keydown', event => {
-  if (event.isComposing || event.keyCode === 229) {
-    return;
-  } else if (event.keyCode === 13) {
-  	addItemD();
-  }});*/
 
 for (let i = listArr.length - 1; i >= 0; i--) {
 	document.getElementById(listArr[i]+'listItem').addEventListener('keydown', event => {
@@ -94,14 +52,8 @@ function saveAs(uri, filename) {
 	if (typeof link.download === 'string') {
 	  link.href = uri;
 	  link.download = filename;
-
-	  //Firefox requires the link to be in the body
 	  document.body.appendChild(link);
-
-	  //simulate click
 	  link.click();
-
-	  //remove the link when done
 	  document.body.removeChild(link);
 	} else {
 	  window.open(uri);
@@ -126,7 +78,6 @@ function isValidUrl(string) {
   } catch (_) {
     return false;  
   }
-
   return true;
 }
 
@@ -139,15 +90,6 @@ function clearText() {
 	document.getElementById('artist').value = "";
 	document.getElementById('album').value = "";
 }
-
-/*let scounter = 0;
-let acounter = 0;
-let bcounter = 0;
-let ccounter = 0;
-let dcounter = 0;
-let tcounter = 0;*/
-
-
 function addTracks() {
 	let artist = document.getElementById('artist').value;
 	let album = document.getElementById('album').value;
@@ -167,8 +109,6 @@ function addTracks() {
       		return response.json();
     	})
     	.then(function(lastFM) {
-			/*console.log(lastFM.results.albummatches.album[0].image[3]["#text"])*/
-			/*document.querySelector('#cover').src = lastFM.album.image[4]["#text"];*/
 			let albumURL = lastFM.album.url;
 			let postersrc = lastFM.album.image[4]["#text"];
 			let poster = document.createElement('img');
@@ -180,7 +120,7 @@ function addTracks() {
 			document.querySelector('#nowPlaying').innerHTML = lastFM.album.tracks.track[0].name;
 
 
-				var data = [
+			var data = [
 			    {
 			        url: albumURL, // url string rquired
 			        selector: 'td.chartlist-play', // selector string rquired
@@ -193,19 +133,9 @@ function addTracks() {
 			                    by: 'attr', // attribut string rquired
 			                    value: 'data-youtube-id' // attribut value string optional
 			                }
-			            },
-			            //{
-			               // name: 'title',
-			                //find: 'a',
-			                //grab: {
-			                    //by: 'attr',
-			                    //value: 'data-track-name'
-			                //}
-			            //},
-			            // ---- new selector ---- //
+			            }			    
 			        ]
 			    },
-			    // ---- new website url ---- //
 			];
 			for (let i = 0; i < lastFM.album.tracks.track.length; i++) {
   			let track = document.createElement('li');  			
@@ -224,22 +154,6 @@ function addTracks() {
 		  	playBtn.setAttribute("id", "youtube-icon"+i);
 		  	playBtn.addEventListener('click', setVideo);
 		  	imgdiv.appendChild(playBtn);
-
-		  	
-
-		  	/*let player = document.createElement('div');
-		  	player.id = 'youtube-audio'+i
-  			player.setAttribute('data-autoplay', '0')
-  			player.setAttribute('data-loop', '1')
-  			track.appendChild(player);
-  			var	t = document.createElement("img");		    		
-    		t.src = "loading.png";
-    		t.className = "ytImage";
-  			t.setAttribute("id", "youtube-icon"+i);
-  			player.appendChild(t);
-  			var a = document.createElement("div");
-  			a.setAttribute("id", "youtube-player"+i);
-  			player.appendChild(a);*/
 		  	}
 
 			ygrab(data, async function(result) {
@@ -247,114 +161,21 @@ function addTracks() {
 				document.querySelector('#youtube-audio').setAttribute('data-video', albumIds[0].id);
 			
 			
-			for (let i = 0; i < lastFM.album.tracks.track.length; i++) {
-				let vidId = albumIds[i].id;
-				var e = document.getElementById("track"+i);
-				let player = document.querySelector('#youtube-audio');
-				e.setAttribute('data-video', vidId);
-				/*playBtn.onclick = player.setAttribute('data-video', e['data-video']);*/
-
-				/*var e = document.getElementById("youtube-audio"+i);
-				e.setAttribute('data-video', vidId);*/
-				/*await createPlayer(i,e);*/
-
-  			/*let track = document.createElement('li');  			
-  			let trackName = lastFM.album.tracks.track[i].name;
-  			track.className = "item";
-		  	track.innerHTML = "<p>"+trackName+"</p>";
-		  	trackList.appendChild(track);*/
-
-  			/*let player = document.createElement('div');*/
-  			/*fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q='+trackName+'&key=', {mode: 'cors'})*/
-  			/*fetch('https://youtube-scrape.herokuapp.com/api/search?q=banana&page=1')
-				.then(function(response) {
-					return response.json();
-				})
-				.then(function(youtube) {
-					console.log(youtube);*/
-		  			/*let vidId = youtube.items[0].id.videoId;*/
-		  				
-		  			/*player = document.querySelector('#youtube-audio'+i);	  			
-		  			player.setAttribute('data-video', vidId);
-					
-		  			player.id = 'youtube-audio'+i
-		  			player.setAttribute('data-autoplay', '0')
-		  			player.setAttribute('data-loop', '1')
-		  			track.appendChild(player);*/
-
-		  			
-		    		/*var	t = document.createElement("img");		    		
-		    		t.src = "loading.png";
-		    		t.className = "ytImage";
-		  			t.setAttribute("id", "youtube-icon"+i);
-		  			e.appendChild(t);
-		  			var a = document.createElement("div");
-		  			a.setAttribute("id", "youtube-player"+i);
-		  			e.appendChild(a);*/
-
-		  			/*var o = function(e) {
-		    			var a = e ? "IDzX9gL.png" : "quyUPXN.png";
-		    			t.setAttribute("src", "https://i.imgur.com/" + a)
-		  			};*/
-		  			/*e.onclick = toggleAudio;*/
-		  			
-
-		  			/*var r = new YT.Player("youtube-player"+i, {
-		    			height: "0",
-		    			width: "0",
-		    			videoId: e.dataset.video,
-		    			playerVars: {
-		      				autoplay: e.dataset.autoplay,
-		      				loop: e.dataset.loop
-		    			},
-		    			events: {
-		      				'onReady': onPlayerReady,
-		      				'onStateChange': onPlayerStateChange
-		      				}
-		 			 });
-		  	
-
-		  			function togglePlayButton(play) {    
-		    			document.getElementById("youtube-icon"+i).src = play ? "IDzX9gL.png" : "quyUPXN.png";
-		  			}
-
-					  function toggleAudio() {
-					    if ( r.getPlayerState() == 1 || r.getPlayerState() == 3 ) {
-					      r.pauseVideo(); 
-					      togglePlayButton(false);
-					    } else {
-					      r.playVideo(); 
-					      togglePlayButton(true);
-					    } 
-					  } 
-
-					  function onPlayerReady(event) {
-					    togglePlayButton(r.getPlayerState() !== 5);
-					  }
-
-					  function onPlayerStateChange(event) {
-					    if (event.data === 0) {
-					      togglePlayButton(false); 
-					    }
-					  }*/
-					
-					/*});*/
-}
-await createPlayer();
-});
+				for (let i = 0; i < lastFM.album.tracks.track.length; i++) {
+					let vidId = albumIds[i].id;
+					var e = document.getElementById("track"+i);
+					let player = document.querySelector('#youtube-audio');
+					e.setAttribute('data-video', vidId);
+				}
+			await createPlayer();
+			});
 			let disArray = ['S','A','B','C','D','T'];
 			for (let i = disArray.length - 1; i >= 0; i--) {
 				document.querySelector('#disappear'+disArray[i]).style.display = "none";
 			}
-  			/*document.querySelector('#disappear').style.display ="none";
-  			document.querySelector('#disappear1').style.display ="none";
-  			document.querySelector('#disappear2').style.display ="none";
-  			document.querySelector('#disappear3').style.display ="none";
-  			document.querySelector('#disappear4').style.display ="none";
-  			document.querySelector('#disappear5').style.display ="none";*/
   			document.querySelector('#listTitle').value = titleCase(album);
-			}
-)};
+		}
+	)};
 function setVideo(){
 	let player = document.querySelector('#youtube-audio');
 	let iframe = document.querySelector('#youtube-player');
@@ -398,9 +219,6 @@ function createPlayer() {
 	    }
 	  }
 }
-
-dragula([document.querySelector('#trackList'), document.querySelector('#slist'), document.querySelector('#alist'), document.querySelector('#blist'), document.querySelector('#clist'), document.querySelector('#dlist')]);
-
 function addItem(item) {
 	let newItem = document.getElementById(item+'listItem').value;
 	let entry = document.createElement('li');
