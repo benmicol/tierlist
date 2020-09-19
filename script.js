@@ -21,23 +21,33 @@ buttonT.addEventListener('click', addTracks);
 buttonScreen.addEventListener('click', screenshot);
 screenshotContainer.addEventListener('click',off);
 
-for (var i = listArr.length - 1; i >= 0; i--) {
-	document.querySelector('#addButton'+listArr[i].toUpperCase()).addEventListener('click', event => {
-		addItem(listArr[i]);
-});
+function clearText() {
+	document.getElementById('slistItem').value = "";
+	document.getElementById('alistItem').value = "";
+	document.getElementById('blistItem').value = "";
+	document.getElementById('clistItem').value = "";
+	document.getElementById('dlistItem').value = "";
+	document.getElementById('artist').value = "";
+	document.getElementById('album').value = "";
 }
+clearText();
 
-for (let i = listArr.length - 1; i >= 0; i--) {
-	document.getElementById(listArr[i]+'listItem').addEventListener('keydown', event => {
-  		if (event.isComposing || event.keyCode === 229) {
-    		return;
-  		} else if (event.keyCode === 13) {
-  			addItem(listArr[i]);
-  		}});
-}
+function eventListeners() {
+	for (let i = listArr.length - 1; i >= 0; i--) {
+		document.getElementById('addButton'+listArr[i].toUpperCase()).addEventListener('click', event => {
+			addItem(listArr[i]);
+		});
+		document.getElementById(listArr[i]+'listItem').addEventListener('keydown', event => {
+	  		if (event.isComposing || event.keyCode === 229) {
+	    		return;
+	  		} else if (event.keyCode === 13) {
+	  			addItem(listArr[i]);
+	  		}});
+	};
+};
+eventListeners();
 
 document.getElementById('listTitle').value = "";
-clearText()
 
 function titleCase(myStr) {
 	return myStr.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ');
@@ -79,16 +89,6 @@ function isValidUrl(string) {
     return false;  
   }
   return true;
-}
-
-function clearText() {
-	document.getElementById('slistItem').value = "";
-	document.getElementById('alistItem').value = "";
-	document.getElementById('blistItem').value = "";
-	document.getElementById('clistItem').value = "";
-	document.getElementById('dlistItem').value = "";
-	document.getElementById('artist').value = "";
-	document.getElementById('album').value = "";
 }
 function addTracks() {
 	let artist = document.getElementById('artist').value;
@@ -220,6 +220,7 @@ function createPlayer() {
 	  }
 }
 function addItem(item) {
+	console.log(item)
 	let newItem = document.getElementById(item+'listItem').value;
 	let entry = document.createElement('li');
 	let rembut = document.createElement('input');
