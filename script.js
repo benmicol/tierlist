@@ -1,6 +1,7 @@
 const listArr = ['s','a','b','c','d'];
 let counter = 0;
 dragula([document.querySelector('#trackList'), document.querySelector('#slist'), document.querySelector('#alist'), document.querySelector('#blist'), document.querySelector('#clist'), document.querySelector('#dlist')]);
+
 const trackList = document.querySelector('#trackList');
 
 const buttonT = document.querySelector('#addButtonT');
@@ -47,7 +48,7 @@ function eventListeners() {
 };
 eventListeners();
 
-document.getElementById('listTitle').value = "";
+
 
 function titleCase(myStr) {
 	return myStr.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ');
