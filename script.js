@@ -1,38 +1,16 @@
 const listArr = ['s','a','b','c','d'];
 let counter = 0;
 dragula([document.querySelector('#trackList'), document.querySelector('#slist'), document.querySelector('#alist'), document.querySelector('#blist'), document.querySelector('#clist'), document.querySelector('#dlist')]);
-
-const trackList = document.querySelector('#trackList');
-
-const buttonT = document.querySelector('#addButtonT');
-const buttonScreen = document.querySelector('#screenButton');
-const main = document.querySelector('main');
-const canvasContainer = document.createElement('div');
-canvasContainer.className = "canvas";
-const screenshotContainer = document.createElement('div');
-screenshotContainer.className = "screenshot";
-document.body.appendChild(screenshotContainer);
-const screenInstruct = document.createElement('div');
-screenshotContainer.appendChild(screenInstruct)
-screenInstruct.textContent = "Right Click and Select Save Image to Download";
-screenInstruct.className = "screenInstruct";
-screenshotContainer.appendChild(canvasContainer);
-
-buttonT.addEventListener('click', addTracks);
-buttonScreen.addEventListener('click', screenshot);
-screenshotContainer.addEventListener('click',off);
+clearText();
+eventListeners();
 
 function clearText() {
-	document.getElementById('slistItem').value = "";
-	document.getElementById('alistItem').value = "";
-	document.getElementById('blistItem').value = "";
-	document.getElementById('clistItem').value = "";
-	document.getElementById('dlistItem').value = "";
+	for (let i = 0; i < listArr.length; i++) {
+		document.getElementById(listArr[i]+'listItem').value = "";
+	};
 	document.getElementById('artist').value = "";
 	document.getElementById('album').value = "";
-}
-clearText();
-
+};
 function eventListeners() {
 	for (let i = listArr.length - 1; i >= 0; i--) {
 		document.getElementById('addButton'+listArr[i].toUpperCase()).addEventListener('click', event => {
@@ -45,19 +23,15 @@ function eventListeners() {
 	  			addItem(listArr[i]);
 	  		}});
 	};
+	document.querySelector('#addButtonT').addEventListener('click', addTracks);
+	document.querySelector('#screenButton').addEventListener('click', screenshot);
 };
-eventListeners();
-
-
-
 function titleCase(myStr) {
 	return myStr.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ');
 }
-
 function off(){
 	document.querySelector(".screenshot").style.display = "none";
 }
-
 function saveAs(uri, filename) {
 	let link = document.createElement('a');
 	if (typeof link.download === 'string') {
@@ -68,21 +42,15 @@ function saveAs(uri, filename) {
 	  document.body.removeChild(link);
 	} else {
 	  window.open(uri);
-	}
-	}
+	}};
 function screenshot(){
-	canvasContainer.innerHTML = "";
-
+	const main = document.querySelector('main');
 	html2canvas(main, {
 		allowTaint: true,
 		scrollY: -window.scrollY
 	}).then(function(canvas) {
 	saveAs(canvas.toDataURL(), document.getElementById('listTitle').value + " Tier List");
-    canvasContainer.appendChild(canvas);
-});
-	/*document.querySelector(".screenshot").style.display = "flex";*/
-}
-
+})};
 function isValidUrl(string) {
   try {
     new URL(string);
@@ -90,8 +58,9 @@ function isValidUrl(string) {
     return false;  
   }
   return true;
-}
+};
 function addTracks() {
+	const trackList = document.querySelector('#trackList');
 	let artist = document.getElementById('artist').value;
 	let album = document.getElementById('album').value;
 	let playerBtn = document.createElement('img');
@@ -103,8 +72,6 @@ function addTracks() {
   	let nowPlaying = document.createElement('div');
   	nowPlaying.id = 'nowPlaying';
   	youtubeAudio.appendChild(nowPlaying);
-
-
 	fetch('http://ws.audioscrobbler.com/2.0/?method=album.getInfo&artist='+artist+'&album=' + album + '&api_key=cb44e36a7f8b0c6427b01d4de757a2ad&format=json', {mode: 'cors'})
     	.then(function(response) {
       		return response.json();
@@ -116,12 +83,9 @@ function addTracks() {
 			poster.id = 'poster';
 			poster.src = postersrc;
 			let trackLetter = document.querySelector('#trackletter');
-
 			trackLetter.appendChild(poster)
 			document.querySelector('#nowPlaying').innerHTML = lastFM.album.tracks.track[0].name;
-
-
-			var data = [
+			let data = [
 			    {
 			        url: albumURL, // url string rquired
 			        selector: 'td.chartlist-play', // selector string rquired
@@ -139,35 +103,32 @@ function addTracks() {
 			    },
 			];
 			for (let i = 0; i < lastFM.album.tracks.track.length; i++) {
-  			let track = document.createElement('li');  			
-  			let trackName = lastFM.album.tracks.track[i].name;
-  			track.className = "item";
-  			track.id = 'track'+i
-		  	track.innerHTML = "<p>"+trackName+"</p>";
-		  	trackList.appendChild(track);
-		  	let imgdiv = document.createElement('div');
-		  	imgdiv.className = "imgdiv";
-		  	track.appendChild(imgdiv);
-		  	let player = document.querySelector('#youtube-audio');
-		  	let playBtn = document.createElement('img');
-		  	playBtn.src = "quyUPXN.png";
-		  	playBtn.className = "ytImage";
-		  	playBtn.setAttribute("id", "youtube-icon"+i);
-		  	playBtn.addEventListener('click', setVideo);
-		  	imgdiv.appendChild(playBtn);
-		  	}
-
+				let track = document.createElement('li');  			
+				let trackName = lastFM.album.tracks.track[i].name;
+				track.className = "item";
+				track.id = 'track'+i
+				track.innerHTML = "<p>"+trackName+"</p>";
+				trackList.appendChild(track);
+				let imgdiv = document.createElement('div');
+				imgdiv.className = "imgdiv";
+				track.appendChild(imgdiv);
+				let player = document.querySelector('#youtube-audio');
+				let playBtn = document.createElement('img');
+				playBtn.src = "quyUPXN.png";
+				playBtn.className = "ytImage";
+				playBtn.setAttribute("id", "youtube-icon"+i);
+				playBtn.addEventListener('click', setVideo);
+				imgdiv.appendChild(playBtn);
+		  	};
 			ygrab(data, async function(result) {
 				let albumIds = result;
 				document.querySelector('#youtube-audio').setAttribute('data-video', albumIds[0].id);
-			
-			
 				for (let i = 0; i < lastFM.album.tracks.track.length; i++) {
 					let vidId = albumIds[i].id;
 					var e = document.getElementById("track"+i);
 					let player = document.querySelector('#youtube-audio');
 					e.setAttribute('data-video', vidId);
-				}
+				};
 			await createPlayer();
 			});
 			let disArray = ['S','A','B','C','D','T'];
