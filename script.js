@@ -1,5 +1,6 @@
 const listArr = ['s','a','b','c','d'];
 let counter = 0;
+document.getElementById('listTitle').value = "";
 dragula([document.querySelector('#trackList'), document.querySelector('#slist'), document.querySelector('#alist'), document.querySelector('#blist'), document.querySelector('#clist'), document.querySelector('#dlist')]);
 clearText();
 eventListeners();
@@ -25,6 +26,12 @@ function eventListeners() {
 	};
 	document.querySelector('#addButtonT').addEventListener('click', addTracks);
 	document.querySelector('#screenButton').addEventListener('click', screenshot);
+	document.querySelector('#album').addEventListener('keydown', event => {
+		if (event.isComposing || event.keyCode === 229) {
+		  return;
+		} else if (event.keyCode === 13) {
+			addTracks();
+		}});
 };
 function titleCase(myStr) {
 	return myStr.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ');

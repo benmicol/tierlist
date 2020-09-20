@@ -90,7 +90,7 @@ ul {
 	border: none;
 	border-radius: 0.2rem;
 	margin: auto;
-	font-size: calc(2vw + 1vh);
+	font-size: calc(1vw + 1vh);
 	max-width: 20vw;
 }
 #listTitle {
@@ -114,7 +114,7 @@ ul {
 	min-height: 4vmin;
 	min-width: 4vmin;
 	margin: auto 0 auto 10px;
-	font-size: calc(2vw + 1vh);
+	font-size: calc(1vw + 1vh);
 }
 #addButtonT {
 	width: 14vw;
