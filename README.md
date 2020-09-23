@@ -17,7 +17,7 @@
     <br />
     <a href="http://benmicol.com/tierlist">View Demo</a>
     ·
-    <a href="https://github.com/benmicol/tierlist/issues">Report Bug</a>
+    <a href="https://github.com/benmicol/tierlist/issues">tierlistrt Bug</a>
     ·
     <a href="https://github.com/benmicol/tierlist/issues">Request Feature</a>
   </p>
@@ -43,16 +43,16 @@ Songs Tier List functions as a standard tier list and allows the user to enter t
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/benmicol/repo.svg?style=flat-square
-[contributors-url]: https://github.com/benmicol/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/benmicol/repo.svg?style=flat-square
-[forks-url]: https://github.com/benmicol/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/benmicol/repo.svg?style=flat-square
-[stars-url]: https://github.com/benmicol/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/benmicol/repo.svg?style=flat-square
-[issues-url]: https://github.com/benmicol/repo/issues
-[license-shield]: https://img.shields.io/github/license/benmicol/repo.svg?style=flat-square
-[license-url]: https://github.com/benmicol/repo/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/benmicol/tierlist.svg?style=flat-square
+[contributors-url]: https://github.com/benmicol/tierlist/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/benmicol/tierlist.svg?style=flat-square
+[forks-url]: https://github.com/benmicol/tierlist/network/members
+[stars-shield]: https://img.shields.io/github/stars/benmicol/tierlist.svg?style=flat-square
+[stars-url]: https://github.com/benmicol/tierlist/stargazers
+[issues-shield]: https://img.shields.io/github/issues/benmicol/tierlist.svg?style=flat-square
+[issues-url]: https://github.com/benmicol/tierlist/issues
+[license-shield]: https://img.shields.io/github/license/benmicol/tierlist.svg?style=flat-square
+[license-url]: https://github.com/benmicol/tierlist/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/benmicol
 [product-screenshot]: images/screenshot.png
