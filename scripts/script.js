@@ -72,7 +72,7 @@ function addTracks() {
 	let album = document.getElementById('album').value;
 	let playerBtn = document.createElement('img');
 	let youtubeAudio = document.querySelector('#youtube-audio');
-  	playerBtn.src = "quyUPXN.png";
+  	playerBtn.src = "icons/quyUPXN.png";
   	playerBtn.className = "ytImage";
   	playerBtn.setAttribute("id", "youtube-icon");
   	youtubeAudio.appendChild(playerBtn);
@@ -121,7 +121,7 @@ function addTracks() {
 				track.appendChild(imgdiv);
 				let player = document.querySelector('#youtube-audio');
 				let playBtn = document.createElement('img');
-				playBtn.src = "quyUPXN.png";
+				playBtn.src = "icons/quyUPXN.png";
 				playBtn.className = "ytImage";
 				playBtn.setAttribute("id", "youtube-icon"+i);
 				playBtn.setAttribute("data-html2canvas-ignore","");
@@ -169,7 +169,7 @@ function createPlayer() {
 		      				}
 		 			 });
 	function togglePlayButton(play) {    
-		document.getElementById("youtube-icon").src = play ? "IDzX9gL.png" : "quyUPXN.png";
+		document.getElementById("youtube-icon").src = play ? "icons/IDzX9gL.png" : "icons/quyUPXN.png";
 		}
 	function toggleAudio() {
 	    if ( r.getPlayerState() == 1 || r.getPlayerState() == 3 ) {
