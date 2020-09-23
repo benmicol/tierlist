@@ -24,14 +24,14 @@
 </p>
 
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+## Overview
 
 [![Product Name Screen Shot][product-screenshot]](http://benmicol.com/tierlist)
 
+
 Songs Tier List functions as a standard tier list and allows the user to enter their own text or image links in the provided fields. Users can create and remove items while seamlessly dragging and dropping them between tiers. However the most useful feature is the ability to enter an artist's name and album title to automatically generate a list of tracks from the album with the option to listen to the audio from each track. After finishing the list simply click the download screenshot button to receive a formatted version of your tier list!
-
-
+#### Finished Tier List
+![List Screenshot](/images/tierlist.png)
 
 ### Built With
 
@@ -56,3 +56,5 @@ Songs Tier List functions as a standard tier list and allows the user to enter t
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/github_username
 [product-screenshot]: images/screenshot.png
+[list-screenshot]: images/tierlist.png
+
