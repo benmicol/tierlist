@@ -79,7 +79,7 @@ function addTracks() {
   	let nowPlaying = document.createElement('div');
   	nowPlaying.id = 'nowPlaying';
   	youtubeAudio.appendChild(nowPlaying);
-	fetch('http://ws.audioscrobbler.com/2.0/?method=album.getInfo&artist='+artist+'&album=' + album + '&api_key=cb44e36a7f8b0c6427b01d4de757a2ad&format=json', {mode: 'cors'})
+	fetch('https://ws.audioscrobbler.com/2.0/?method=album.getInfo&artist='+artist+'&album=' + album + '&api_key=cb44e36a7f8b0c6427b01d4de757a2ad&format=json', {mode: 'cors'})
     	.then(function(response) {
       		return response.json();
     	})
