@@ -124,6 +124,7 @@ function addTracks() {
 				playBtn.src = "quyUPXN.png";
 				playBtn.className = "ytImage";
 				playBtn.setAttribute("id", "youtube-icon"+i);
+				playBtn.setAttribute("data-html2canvas-ignore","");
 				playBtn.addEventListener('click', setVideo);
 				imgdiv.appendChild(playBtn);
 		  	};
