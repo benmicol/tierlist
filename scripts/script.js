@@ -87,11 +87,16 @@ function addTracks() {
     	.then(function(lastFM) {
 			let albumURL = lastFM.album.url;
 			let postersrc = lastFM.album.image[4]["#text"];
+			let posterdiv = document.createElement('div');
+			posterdiv.className = "poster";
 			let poster = document.createElement('img');
-			poster.id = 'poster';
+			/*poster.id = 'poster';*/
 			poster.src = postersrc;
 			let trackLetter = document.querySelector('#trackletter');
-			trackLetter.appendChild(poster)
+			/*trackLetter.appendChild(poster)*/
+			posterdiv.appendChild(poster);
+			document.querySelector('.tierlist').appendChild(posterdiv);
+
 			document.querySelector('#nowPlaying').innerHTML = lastFM.album.tracks.track[0].name;
 			let data = [
 			    {

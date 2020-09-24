@@ -9,7 +9,7 @@ main {
 	display: flex;
 	flex-flow: column;
 	color: white;
-	font-size: calc(1rem + .2vw)
+	font-size: calc(1vw + 1vh);
 }
 header {
 	margin: auto;
@@ -19,23 +19,41 @@ ul {
 	margin: 0;
 	padding: 0;
 }
+iframe {
+	display: none;
+}
+.poster {
+	position: absolute;
+	width: 90%;
+	display: flex;
+	z-index: -1;
+	justify-content: center;
+	height: 62%;
+	opacity: 0.5;
+}
+.poster img {
+	object-fit: contain;
+}
 .disappear {
 	display: flex;
 }
 .tierlist {
-	width:90vw;
-	background-color: rgb(40,40,40);
+	width: 90vw;
+	background-color: rgba(0,0,0,1);
 	margin: auto;
 	display: flex;
 	flex-flow: column;
+	z-index: 0;
 }
 .row {
 	min-height: 10vh;
-	width: 100%;
-	border: 2px solid black;
-	display: flex;
-	flex-flow: row;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 3px;
+    background-color: rgba(50, 50, 50,0.5);
 }
+
 .letter{
 	width: 10vmax;
 	text-align: center;
@@ -163,13 +181,20 @@ ul {
 	color: white;
 	display: flex;
 	flex-flow: column;
+	justify-content: space-evenly;
 }
 .ytImage {
-	max-width: 2vw;
+	max-width: 3vmin;
 	margin-left: 10%;
 	margin-right: 10%;
+}
+#youtube-icon {
+	max-width: 5vmin;
 }
 #poster {
 	object-fit: contain;
 	max-width: 10vw;
+}
+.imgdiv {
+	display: flex;
 }
