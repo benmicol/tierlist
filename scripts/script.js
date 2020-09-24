@@ -1,5 +1,6 @@
 const listArr = ['s','a','b','c','d'];
 let counter = 0;
+let r;
 document.getElementById('listTitle').value = "";
 dragula([document.querySelector('#trackList'), document.querySelector('#slist'), document.querySelector('#alist'), document.querySelector('#blist'), document.querySelector('#clist'), document.querySelector('#dlist')]);
 clearText();
@@ -136,6 +137,8 @@ function addTracks() {
 					var e = document.getElementById("track"+i);
 					let player = document.querySelector('#youtube-audio');
 					e.setAttribute('data-video', vidId);
+					let icon = document.querySelector('#youtube-icon'+i);
+					icon.id = vidId;
 				};
 			await createPlayer();
 			});
@@ -148,14 +151,33 @@ function addTracks() {
 	)};
 function setVideo(){
 	let player = document.querySelector('#youtube-audio');
-	let iframe = document.querySelector('#youtube-player');
-	iframe.setAttribute('src', 'https://www.youtube.com/embed/'+this.parentNode.parentNode.getAttribute('data-video')+'?autoplay=1&loop=1&enablejsapi=1&origin=http%3A%2F%2Fbenmicol.com&widgetid=1');
-	document.querySelector('#nowPlaying').innerHTML = this.parentNode.parentNode.firstChild.innerHTML;
+	if (player.getAttribute('data-video') == this.parentNode.parentNode.getAttribute('data-video')) {
+		if ( r.getPlayerState() == 1 || r.getPlayerState() == 3 ) {
+	      r.pauseVideo(); 
+	      document.getElementById("youtube-icon").src = "icons/quyUPXN.png";
+		  document.getElementById(player.getAttribute('data-video')).src = "icons/quyUPXN.png";
+	    } else {
+	      r.playVideo(); 
+	      document.getElementById("youtube-icon").src = "icons/IDzX9gL.png";
+		  document.getElementById(player.getAttribute('data-video')).src = "icons/IDzX9gL.png";
+	    } 
+	} else {
+		document.getElementById(player.getAttribute('data-video')).src = "icons/quyUPXN.png";
+		document.querySelector('#youtube-player').remove();
+		let ytdiv = document.createElement('div');
+		ytdiv.id = "youtube-player";
+		player.appendChild(ytdiv);
+		player.setAttribute('data-video', this.parentNode.parentNode.getAttribute('data-video'));
+		player.setAttribute('data-autoplay', '1');
+		this.src = "icons/IDzX9gL.png"
+		document.querySelector('#nowPlaying').innerHTML = this.parentNode.parentNode.firstChild.innerHTML;
+		createPlayer();
 	}
+}
 function createPlayer() {
 	let player = document.querySelector('#youtube-audio');
 	player.onclick = toggleAudio;
-	var r = new YT.Player("youtube-player", {
+	r = new YT.Player("youtube-player", {
 		    			height: "0",
 		    			width: "0",
 		    			videoId: player.dataset.video,
@@ -170,6 +192,7 @@ function createPlayer() {
 		 			 });
 	function togglePlayButton(play) {    
 		document.getElementById("youtube-icon").src = play ? "icons/IDzX9gL.png" : "icons/quyUPXN.png";
+		document.getElementById(player.getAttribute('data-video')).src = play ? "icons/IDzX9gL.png" : "icons/quyUPXN.png";
 		}
 	function toggleAudio() {
 	    if ( r.getPlayerState() == 1 || r.getPlayerState() == 3 ) {
