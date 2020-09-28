@@ -17,7 +17,7 @@
     <br />
     <a href="http://benmicol.com/tierlist">View Demo</a>
     ·
-    <a href="https://github.com/benmicol/tierlist/issues">tierlistrt Bug</a>
+    <a href="https://github.com/benmicol/tierlist/issues">Report Bug</a>
     ·
     <a href="https://github.com/benmicol/tierlist/issues">Request Feature</a>
   </p>
