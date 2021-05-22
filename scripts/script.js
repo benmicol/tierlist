@@ -11,7 +11,7 @@ function clearText() {
 		document.getElementById(listArr[i]+'listItem').value = "";
 	};
 	document.getElementById('artist').value = "";
-	document.getElementById('album').value = "";
+	/*document.getElementById('album').value = "";*/
 };
 function eventListeners() {
 	for (let i = listArr.length - 1; i >= 0; i--) {
@@ -25,13 +25,13 @@ function eventListeners() {
 	  			addItem(listArr[i]);
 	  		}});
 	};
-	document.querySelector('#addButtonT').addEventListener('click', addTracks);
+	document.querySelector('#addButtonT').addEventListener('click', addAlbums);
 	document.querySelector('#screenButton').addEventListener('click', screenshot);
-	document.querySelector('#album').addEventListener('keydown', event => {
+	document.querySelector('#artist').addEventListener('keydown', event => {
 		if (event.isComposing || event.keyCode === 229) {
 		  return;
 		} else if (event.keyCode === 13) {
-			addTracks();
+			addAlbums();
 		}});
 };
 function titleCase(myStr) {
@@ -52,12 +52,13 @@ function saveAs(uri, filename) {
 	  window.open(uri);
 	}};
 function screenshot(){
-	const main = document.querySelector('main');
-	html2canvas(main, {
+	const capture = document.querySelector('.capture');
+	html2canvas(document.body, {
+		// useCORS: true,
 		allowTaint: true,
 		scrollY: -window.scrollY
 	}).then(function(canvas) {
-	saveAs(canvas.toDataURL(), document.getElementById('listTitle').value + " Tier List");
+	saveAs(canvas.toDataURL(), document.getElementById('listTitle').value + " TierList.png");
 })};
 function isValidUrl(string) {
   try {
@@ -67,24 +68,58 @@ function isValidUrl(string) {
   }
   return true;
 };
-function addTracks() {
+function addAlbums() {
 	const trackList = document.querySelector('#trackList');
 	let artist = document.getElementById('artist').value;
-	let album = document.getElementById('album').value;
-	let playerBtn = document.createElement('img');
+	fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist='+artist+ '&api_key=cb44e36a7f8b0c6427b01d4de757a2ad&format=json', {mode: 'cors'})
+    	.then(function(response) {
+      		return response.json();
+    	})
+    	.then(function(lastFM1) {
+    		console.log(lastFM1.topalbums.album)
+    		for (let i = 0; i < lastFM1.topalbums.album.length && i < 20; i++) {
+    			
+					let album = document.createElement('li');  			
+					let albumName = lastFM1.topalbums.album[i].name;
+					let albumCoverSrc = lastFM1.topalbums.album[i].image[2]["#text"];
+					let albumCover = document.createElement('img');
+					albumCover.src = albumCoverSrc;
+					album.className = "item";
+					album.id = 'album' + i ;
+					album.setAttribute('data-artist', lastFM1.topalbums.album[i].artist.name);
+					album.setAttribute('data-album', lastFM1.topalbums.album[i].name);
+					albumCover.addEventListener('click', addTracks);
+					album.appendChild(albumCover);
+					trackList.appendChild(album);
+			  	};
+		})
+	let disArray = ['S','A','B','C','D','T'];
+	for (let i = disArray.length - 1; i >= 0; i--) {
+		document.querySelector('#disappear'+disArray[i]).style.display = "none";
+	}
+}
+function addTracks() {
+	const trackList = document.querySelector('#trackList');
+	let artist = this.parentNode.getAttribute('data-artist');
+	let album = this.parentNode.getAttribute('data-album');
+	trackList.innerHTML=" ";
 	let youtubeAudio = document.querySelector('#youtube-audio');
+	youtubeAudio.innerHTML = '<div id="youtube-player"></div>'
+	let playerBtn = document.createElement('img');
   	playerBtn.src = "icons/quyUPXN.png";
   	playerBtn.className = "ytImage";
   	playerBtn.setAttribute("id", "youtube-icon");
   	youtubeAudio.appendChild(playerBtn);
   	let nowPlaying = document.createElement('div');
   	nowPlaying.id = 'nowPlaying';
+  	nowPlaying.innerHTML="Album not found, please try again."
   	youtubeAudio.appendChild(nowPlaying);
-	fetch('https://ws.audioscrobbler.com/2.0/?method=album.getInfo&artist='+artist+'&album=' + album + '&api_key=cb44e36a7f8b0c6427b01d4de757a2ad&format=json', {mode: 'cors'})
+	fetch('https://ws.audioscrobbler.com/2.0/?method=album.getInfo&artist='+ artist +'&album='+ album + '&api_key=cb44e36a7f8b0c6427b01d4de757a2ad&format=json', {mode: 'cors'})
     	.then(function(response) {
       		return response.json();
     	})
     	.then(function(lastFM) {
+    		console.log(lastFM)
 			let albumURL = lastFM.album.url;
 			let postersrc = lastFM.album.image[4]["#text"];
 			let posterdiv = document.createElement('div');
@@ -147,10 +182,6 @@ function addTracks() {
 				};
 			await createPlayer();
 			});
-			let disArray = ['S','A','B','C','D','T'];
-			for (let i = disArray.length - 1; i >= 0; i--) {
-				document.querySelector('#disappear'+disArray[i]).style.display = "none";
-			}
   			document.querySelector('#listTitle').value = titleCase(album);
 		}
 	)};
