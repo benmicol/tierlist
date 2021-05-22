@@ -52,7 +52,7 @@ Songs Tier List functions as a standard tier list and allows the user to enter t
 [issues-shield]: https://img.shields.io/github/issues/benmicol/tierlist.svg?style=flat-square
 [issues-url]: https://github.com/benmicol/tierlist/issues
 [license-shield]: https://img.shields.io/github/license/benmicol/tierlist.svg?style=flat-square
-[license-url]: https://github.com/benmicol/tierlist/blob/master/LICENSE.txt
+[license-url]: https://github.com/benmicol/tierlist/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/benmicol
 [product-screenshot]: images/screenshot.png
